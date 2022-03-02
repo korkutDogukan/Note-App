@@ -1,0 +1,86 @@
+.card-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  &-item {
+    width: 280px;
+    height: 130px;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3), 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    &-title {
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+
+    &-desc {
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    &-time {
+      font-weight: 700;
+      align-self: flex-end;
+    }
+
+    &-close-icon {
+      display: inline-block;
+      position: absolute;
+      cursor: pointer;
+      top: 3px;
+      right: 3px;
+      width: 15px;
+      height: 15px;
+      padding: 5px;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), transparent;
+      color: #fff;
+      border-radius: 50%;
+    }
+  }
+}
+
+.none-card-list {
+  &-message {
+    background-color: gray;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3), 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+  }
+}
+
+.card-list-transition-enter-active,
+.card-list-transition-leave-active {
+  transition: 0.7s ease all;
+}
+
+.card-list-transition-enter-from,
+.card-list-transition-leave-to {
+  opacity: 0;
+}
+
+.card-list-message-enter-active,
+.card-list-message-leave-active {
+  transition: 2s ease all;
+}
+
+.card-list-message-enter-from,
+.card-list-message-leave-to {
+  opacity: 0;
+}
