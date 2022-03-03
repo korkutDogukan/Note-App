@@ -49,17 +49,29 @@
         <button @click="addNote" type="button" class="note-card-content-footer-button">Add Note</button>
       </div>
     </div>
-    <NoteList @deleteCard="deleteCard" :noteList="noteList"></NoteList>
+    <NoteCount @filterCardList="filterCardList" :colorCount="colorCount"></NoteCount>
+    <NoteList
+      @deleteCard="deleteCard"
+      :noteList="filteredList.length > 0 ? filteredList : noteList"
+    ></NoteList>
   </div>
 </template>
 <script setup>
 import NoteList from "../NoteList/NoteList.vue";
 import { ref } from "vue";
+import NoteCount from "../NoteCount/NoteCount.vue";
 
 const selectedColor = ref(null);
 const noteTitle = ref(null);
 const noteDescription = ref(null);
 const noteList = ref([]);
+const filteredList = ref([]);
+const colorCount = ref({
+  redCount: 0,
+  blueCount: 0,
+  yellowCount: 0,
+  greyCount: 0
+})
 
 const selectRed = () => {
   selectedColor.value = "red";
@@ -76,12 +88,36 @@ const selectGrey = () => {
 
 const deleteCard = (card) => {
   noteList.value = noteList.value.filter(c => c != card);
+  filteredList.value = filteredList.value.filter(c => c != card);
+  if (card.color == 'red') {
+    colorCount.value.redCount--;
+  } else if (card.color == 'blue') {
+    colorCount.value.blueCount--;
+  } else if (card.color == 'yellow') {
+    colorCount.value.yellowCount--;
+  } else {
+    colorCount.value.greyCount--;
+  }
+}
+
+const filterCardList = (color) => {
+  filteredList.value = noteList.value.filter(c => c.color == color);
+  console.log("selam", color);
 }
 
 const addNote = () => {
   if (noteTitle.value != null && noteDescription.value != null && selectedColor.value != null) {
+    if (selectedColor.value == 'red') {
+      colorCount.value.redCount++;
+    } else if (selectedColor.value == 'blue') {
+      colorCount.value.blueCount++;
+    } else if (selectedColor.value == 'yellow') {
+      colorCount.value.yellowCount++;
+    } else {
+      colorCount.value.greyCount++;
+    }
     let dateObj = new Date();
-    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let month = dateObj.getUTCMonth() + 1;
     let day = dateObj.getUTCDate();
     let year = dateObj.getUTCFullYear();
     const noteContent = ref({

@@ -74,13 +74,3 @@
 .card-list-transition-leave-to {
   opacity: 0;
 }
-
-.card-list-message-enter-active,
-.card-list-message-leave-active {
-  transition: 2s ease all;
-}
-
-.card-list-message-enter-from,
-.card-list-message-leave-to {
-  opacity: 0;
-}

@@ -10,7 +10,7 @@
         <h3 class="card-list-item-title">{{ card.title }}</h3>
         <p class="card-list-item-desc">{{ card.desc }}</p>
         <span class="card-list-item-time">{{ card.time }}</span>
-        <span @click="$emit('deleteCard', card)" class="card-list-item-close-icon">
+        <span @click="emit('deleteCard', card)" class="card-list-item-close-icon">
           <i class="fa-solid fa-xmark"></i>
         </span>
       </div>
@@ -21,9 +21,10 @@
   </div>
 </template>
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps(['noteList']);
+const emit = defineEmits(['deleteCard']);
 
 const cardBackgroundColor = (color) => {
   return `background-color: ${color};`
